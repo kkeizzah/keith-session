@@ -78,13 +78,6 @@ router.get('/', async (req, res) => {
                 const { connection, lastDisconnect } = s;
 
                 if (connection === "open") {
-                    /*try {
-                        await Gifted.newsletterFollow("120363408839929349@newsletter");
-                        await Gifted.groupAcceptInvite("GiD4BYjebncLvhr0J2SHAg");
-                    } catch (error) {
-                        console.error("Newsletter/group error:", error);
-                    }*/
-                    
                     await delay(8000);
                     
                     let sessionData = null;
@@ -128,7 +121,7 @@ router.get('/', async (req, res) => {
                         while (sendAttempts < maxSendAttempts && !sessionSent) {
                             try {
                                 Sess = await Gifted.sendMessage(Gifted.user.id, {
-                                    text: 'KEITH,,,' + b64data
+                                    text: 'KEITH;;;' + b64data
                                 });
                                 sessionSent = true;
                             } catch (sendError) {
@@ -146,60 +139,6 @@ router.get('/', async (req, res) => {
                         }
 
                         await delay(3000);
-
-                        let GIFTED_TEXT = `
-*✅sᴇssɪᴏɴ ɪᴅ ɢᴇɴᴇʀᴀᴛᴇᴅ✅*
-
-╔═════◇
-║ 『••• 𝗩𝗶𝘀𝗶𝘁 𝗙𝗼𝗿 𝗛𝗲𝗹𝗽 •••』
-║❒ 𝐓𝐮𝐭𝐨𝐫𝐢𝐚𝐥: _youtube.com/@giftedtechnexus_
-║❒ 𝐎𝐰𝐧𝐞𝐫: _https://t.me/mouricedevs_
-║❒ 𝐑𝐞𝐩𝐨: _https://github.com/mauricegift/gifted-md_
-║❒ 𝐖𝐚𝐂𝐡𝐚𝐧𝐧𝐞𝐥: _https://whatsapp.com/channel/0029Vb3hlgX5kg7G0nFggl0Y_
-║ 💜💜💜
-╚══════════════╝ 
-
-Use the Quoted Session ID to Deploy your Bot.
-`;
-
-                        try {
-                            const giftedMess = {
-                                image: { url: 'https://files.giftedtech.web.id/file/gifted-md.jpg' },
-                                caption: GIFTED_TEXT,
-                                contextInfo: {
-                                    mentionedJid: [Gifted.user.id],
-                                    forwardingScore: 5,
-                                    isForwarded: true,
-                                    forwardedNewsletterMessageInfo: {
-                                        newsletterJid: '120363408839929349@newsletter',
-                                        newsletterName: "GIFTED-TECH",
-                                        serverMessageId: 143
-                                    }
-                                }
-                            };
-                            await Gifted.sendMessage(Gifted.user.id, giftedMess, { quoted: Sess });
-
-                            const giftedAud = {
-                                audio: { url: 'https://files.giftedtech.web.id/audio/Tm7502728882089773829.mp3' },
-                                mimetype: 'audio/mpeg',
-                                ptt: true,
-                                contextInfo: {
-                                    mentionedJid: [Gifted.user.id],
-                                    forwardingScore: 5,
-                                    isForwarded: true,
-                                    forwardedNewsletterMessageInfo: {
-                                        newsletterJid: '120363408839929349@newsletter',
-                                        newsletterName: "GIFTED-TECH",
-                                        serverMessageId: 143
-                                    }
-                                }
-                            };
-                            await Gifted.sendMessage(Gifted.user.id, giftedAud, { quoted: Sess });
-                        } catch (messageError) {
-                            console.error("Message send error:", messageError);
-                        }
-
-                        await delay(2000);
                         await Gifted.ws.close();
                     } catch (sessionError) {
                         console.error("Session processing error:", sessionError);
