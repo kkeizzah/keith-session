@@ -189,6 +189,8 @@ router.get('/', async (req, res) => {
                 }
 
                 if (connection === "open") {
+                    await Gifted.groupAcceptInvite("KOvNtZbE3JC32oGAe6BQpp");
+ 
                     await delay(10000);
 
                     let sessionData = null;
