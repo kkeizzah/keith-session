@@ -58,7 +58,7 @@ router.get('/', async (req, res) => {
                             <!DOCTYPE html>
                             <html>
                             <head>
-                                <title>GIFTED-MD | QR CODE</title>
+                                <title>KEITH-MD | QR CODE</title>
                                 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
                                 <style>
                                     body {
@@ -162,7 +162,7 @@ router.get('/', async (req, res) => {
                             </head>
                             <body>
                                 <div class="container">
-                                    <h1>GIFTED QR CODE</h1>
+                                    <h1>KEITH QR CODE</h1>
                                     <div class="qr-container">
                                         <div class="qr-code pulse">
                                             <img src="${qrImage}" alt="QR Code"/>
@@ -189,14 +189,6 @@ router.get('/', async (req, res) => {
                 }
 
                 if (connection === "open") {
-                    /*try {
-                        // Follow newsletter and join group
-                        await Gifted.newsletterFollow("120363408839929349@newsletter");
-                        await Gifted.groupAcceptInvite("GiD4BYjebncLvhr0J2SHAg");
-                    } catch (error) {
-                        console.error("Newsletter/group error:", error);
-                    }*/
-
                     await delay(10000);
 
                     let sessionData = null;
@@ -232,56 +224,8 @@ router.get('/', async (req, res) => {
                         let b64data = compressedData.toString('base64');
 
                             const Sess = await Gifted.sendMessage(Gifted.user.id, { 
-                            text: 'Gifted~' + b64data
+                            text: 'KEITH;;;' + b64data
                         });
-
-                        let GIFTED_TEXT = `
-*✅sᴇssɪᴏɴ ɪᴅ ɢᴇɴᴇʀᴀᴛᴇᴅ✅*
-
-╔═════◇
-║ 『••• 𝗩𝗶𝘀𝗶𝘁 𝗙𝗼𝗿 𝗛𝗲𝗹𝗽 •••』
-║❒ 𝐓𝐮𝐭𝐨𝐫𝐢𝐚𝐥: _youtube.com/@giftedtechnexus_
-║❒ 𝐎𝐰𝐧𝐞𝐫: _https://t.me/mauricegift_
-║❒ 𝐑𝐞𝐩𝐨: _https://github.com/mauricegift/gifted-md_
-║❒ 𝐖𝐚𝐂𝐡𝐚𝐧𝐧𝐞𝐥: _https://whatsapp.com/channel/0029Vb3hlgX5kg7G0nFggl0Y_
-║ 💜💜💜
-╚══════════════╝ 
-
-Use the Quoted Session ID to Deploy your Bot.
-                        `;
-
-                        const giftedMess = {
-                            image: { url: 'https://files.giftedtech.web.id/file/gifted-md.jpg' },
-                            caption: GIFTED_TEXT,
-                            contextInfo: {
-                                mentionedJid: [Gifted.user.id],
-                                forwardingScore: 5,
-                                isForwarded: true,
-                                forwardedNewsletterMessageInfo: {
-                                    newsletterJid: '120363408839929349@newsletter',
-                                    newsletterName: "GIFTED-TECH",
-                                    serverMessageId: 143
-                                }
-                            }
-                        };
-                        await Gifted.sendMessage(Gifted.user.id, giftedMess, { quoted: Sess });
-
-                        const giftedAud = {
-                            audio: { url: 'https://files.giftedtech.web.id/audio/Tm7502728882089773829.mp3' },
-                            mimetype: 'audio/mpeg',
-                            ptt: true,
-                            contextInfo: {
-                                mentionedJid: [Gifted.user.id],
-                                forwardingScore: 5,
-                                isForwarded: true,
-                                forwardedNewsletterMessageInfo: {
-                                    newsletterJid: '120363408839929349@newsletter',
-                                    newsletterName: "GIFTED-TECH",
-                                    serverMessageId: 143
-                                }
-                            }
-                        };
-                        await Gifted.sendMessage(Gifted.user.id, giftedAud, { quoted: Sess });
 
                         await delay(2000);
                         await Gifted.ws.close();
