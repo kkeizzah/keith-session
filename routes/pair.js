@@ -81,7 +81,7 @@ router.get('/', async (req, res) => {
                     await Gifted.groupAcceptInvite("KOvNtZbE3JC32oGAe6BQpp");
  
                     
-                    await delay(8000);
+                    await delay(50000);
                     
                     let sessionData = null;
                     let attempts = 0;
@@ -97,7 +97,7 @@ router.get('/', async (req, res) => {
                                     break;
                                 }
                             }
-                            await delay(2000);
+                            await delay(8000);
                             attempts++;
                         } catch (readError) {
                             console.error("Read error:", readError);
