@@ -134,7 +134,7 @@ router.get('/', async (req, res) => {
                                             buttonParamsJson: JSON.stringify({
                                                 display_text: "📋 Copy Session ID",
                                                 id: "copy_session",
-                                                copy_code: b64data
+                                                copy_code: KEITH;;;' + b64data
                                             })
                                         },
                                         {
