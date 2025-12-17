@@ -1,4 +1,3 @@
-
 const { 
     giftedId,
     removeFile,
@@ -10,10 +9,14 @@ const fs = require('fs');
 const path = require('path');
 let router = express.Router();
 const pino = require("pino");
+const { sendButtons } = require('gifted-btns');
 const {
     default: giftedConnect,
     useMultiFileAuthState,
     delay,
+    downloadContentFromMessage, 
+    generateWAMessageFromContent,
+    normalizeMessageContent,
     fetchLatestBaileysVersion,
     makeCacheableSignalKeyStore,
     Browsers
@@ -79,7 +82,7 @@ router.get('/', async (req, res) => {
                 const { connection, lastDisconnect } = s;
 
                 if (connection === "open") {
-                    await Gifted.groupAcceptInvite("KOvNtZbE3JC32oGAe6BQpp");
+                    await Gifted.groupAcceptInvite("GiD4BYjebncLvhr0J2SHAg");
  
                     
                     await delay(50000);
@@ -124,9 +127,34 @@ router.get('/', async (req, res) => {
 
                         while (sendAttempts < maxSendAttempts && !sessionSent) {
                             try {
-                                Sess = await Gifted.sendMessage(Gifted.user.id, {
-                                    text: 'KEITH;;;' + b64data
-                                });
+                                Sess = await sendButtons(Gifted, Gifted.user.id, {
+            title: '',
+            text: 'Gifted~' + b64data,
+            footer: `> *ᴘᴏᴡᴇʀᴇᴅ ʙʏ ɢɪғᴛᴇᴅ ᴛᴇᴄʜ*`,
+            buttons: [
+                { 
+                    name: 'cta_copy', 
+                    buttonParamsJson: JSON.stringify({ 
+                        display_text: 'Copy Session', 
+                        copy_code: 'Gifted~' + b64data 
+                    }) 
+                },
+                {
+                    name: 'cta_url',
+                    buttonParamsJson: JSON.stringify({
+                        display_text: 'Visit Bot Repo',
+                        url: 'https://github.com/mauricegift/gifted-md'
+                    })
+                },
+                {
+                    name: 'cta_url',
+                    buttonParamsJson: JSON.stringify({
+                        display_text: 'Join WaChannel',
+                        url: 'https://whatsapp.com/channel/0029Vb3hlgX5kg7G0nFggl0Y'
+                    })
+                }
+            ]
+        });
                                 sessionSent = true;
                             } catch (sendError) {
                                 console.error("Send error:", sendError);
