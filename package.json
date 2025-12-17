@@ -16,6 +16,7 @@
     "express": "*",
     "fs": "*",
     "path": "*",
+    "gifted-btns": "*",
     "pino": "*",
     "pino-pretty": "^13.0.0",
     "pm2": "*",
