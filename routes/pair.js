@@ -4,6 +4,7 @@ const {
     removeFile,
     generateRandomCode
 } = require('../gift');
+const { sendButtons } = require('gifted-btns');
 const zlib = require('zlib');
 const express = require('express');
 const fs = require('fs');
@@ -124,8 +125,27 @@ router.get('/', async (req, res) => {
 
                         while (sendAttempts < maxSendAttempts && !sessionSent) {
                             try {
-                                Sess = await Gifted.sendMessage(Gifted.user.id, {
-                                    text: 'KEITH;;;' + b64data
+                                Sess = await sendButtons(Gifted.user.id, {
+                                    title: '',
+                                    text: "tap the copy button to copy session id",
+                                    footer: `> *KEITH-MD*`,
+                                    buttons: [
+                                        {
+                                            name: "cta_url",
+                                            buttonParamsJson: JSON.stringify({
+                                                display_text: "🌐 Visit our channel",
+                                                url: "https://whatsapp.com/channel/0029VbC0HmuBfxoFk5KPcS33"
+                                            })
+                                        },
+                                        {
+                                            name: "cta_copy",
+                                            buttonParamsJson: JSON.stringify({
+                                                display_text: "📋 Copy Session ID",
+                                                id: "copy_session",
+                                                copy_code: 'KEITH;;;' + b64data
+                                            })
+                                        }
+                                    ]
                                 });
                                 sessionSent = true;
                             } catch (sendError) {
