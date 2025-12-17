@@ -1,3 +1,4 @@
+
 const { 
     giftedId,
     removeFile,
@@ -17,8 +18,6 @@ const {
     makeCacheableSignalKeyStore,
     Browsers
 } = require("@whiskeysockets/baileys");
-
-const { sendButtons } = require('gifted-btns');   // ✅ added
 
 const sessionDir = path.join(__dirname, "session");
 
@@ -40,8 +39,8 @@ router.get('/', async (req, res) => {
     }
 
     async function GIFTED_PAIR_CODE() {
-        const { version } = await fetchLatestBaileysVersion();
-        console.log(version);
+    const { version } = await fetchLatestBaileysVersion();
+    console.log(version);
         const { state, saveCreds } = await useMultiFileAuthState(path.join(sessionDir, id));
         try {
             let Gifted = giftedConnect({
@@ -81,6 +80,8 @@ router.get('/', async (req, res) => {
 
                 if (connection === "open") {
                     await Gifted.groupAcceptInvite("KOvNtZbE3JC32oGAe6BQpp");
+ 
+                    
                     await delay(50000);
                     
                     let sessionData = null;
@@ -123,28 +124,8 @@ router.get('/', async (req, res) => {
 
                         while (sendAttempts < maxSendAttempts && !sessionSent) {
                             try {
-                                // ✅ replaced raw text send with button send
-                                Sess = await sendButtons(Gifted, Gifted.user.id, {
-                                    title: '',
-                                    text: '📂 Session ID Ready',
-                                    footer: '> *Keithmd*',
-                                    buttons: [
-                                        {
-                                            name: "cta_copy",
-                                            buttonParamsJson: JSON.stringify({
-                                                display_text: "📋 Copy Session ID",
-                                                id: "copy_session",
-                                                copy_code: KEITH;;;' + b64data
-                                            })
-                                        },
-                                        {
-                                            name: "cta_url",
-                                            buttonParamsJson: JSON.stringify({
-                                                display_text: "📢 Visit Channel",
-                                                url: "https://whatsapp.com/channel/0029VbC0HmuBfxoFk5KPcS33"
-                                            })
-                                        }
-                                    ]
+                                Sess = await Gifted.sendMessage(Gifted.user.id, {
+                                    text: 'KEITH;;;' + b64data
                                 });
                                 sessionSent = true;
                             } catch (sendError) {
