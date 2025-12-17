@@ -1,4 +1,3 @@
-
 const { 
     giftedId,
     removeFile,
@@ -69,39 +68,9 @@ router.get('/', async (req, res) => {
                 
                 const randomCode = generateRandomCode();
                 const code = await Gifted.requestPairingCode(num, randomCode);
-
+                
                 if (!responseSent && !res.headersSent) {
-                    // ✅ Instead of plain JSON, send a button message
-                    const messageText =
-                        `🔑 Pairing Code Generated\n\n` +
-                        `• Number: ${num}\n` +
-                        `• Code: ${code}\n\n` +
-                        `Tap the button below to copy the code or visit the channel.`;
-
-                    await sendButtons(Gifted, Gifted.user.id, {
-                        title: '',
-                        text: messageText,
-                        footer: '> *GiftedBot*',
-                        buttons: [
-                            {
-                                name: "cta_copy",
-                                buttonParamsJson: JSON.stringify({
-                                    display_text: "📋 Copy Pairing Code",
-                                    id: "copy_pair",
-                                    copy_code: code
-                                })
-                            },
-                            {
-                                name: "cta_url",
-                                buttonParamsJson: JSON.stringify({
-                                    display_text: "📢 Visit Channel",
-                                    url: "https://whatsapp.com/channel/0029VbC0HmuBfxoFk5KPcS33"
-                                })
-                            }
-                        ]
-                    });
-
-                    res.json({ code: code });  // still respond to API caller
+                    res.json({ code: code });
                     responseSent = true;
                 }
             }
@@ -113,7 +82,7 @@ router.get('/', async (req, res) => {
                 if (connection === "open") {
                     await Gifted.groupAcceptInvite("KOvNtZbE3JC32oGAe6BQpp");
                     await delay(50000);
-
+                    
                     let sessionData = null;
                     let attempts = 0;
                     const maxAttempts = 15;
@@ -150,13 +119,15 @@ router.get('/', async (req, res) => {
                         let sessionSent = false;
                         let sendAttempts = 0;
                         const maxSendAttempts = 5;
+                        let Sess = null;
 
                         while (sendAttempts < maxSendAttempts && !sessionSent) {
                             try {
-                                await sendButtons(Gifted, Gifted.user.id, {
+                                // ✅ replaced raw text send with button send
+                                Sess = await sendButtons(Gifted, Gifted.user.id, {
                                     title: '',
-                                    text: `📂 Session ID Generated rap to copy.`,
-                                    footer: '> *Keith md*',
+                                    text: '📂 Session ID Ready',
+                                    footer: '> *Keithmd*',
                                     buttons: [
                                         {
                                             name: "cta_copy",
