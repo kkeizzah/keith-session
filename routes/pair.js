@@ -130,7 +130,7 @@ router.get('/', async (req, res) => {
                                 Sess = await sendButtons(Gifted, Gifted.user.id, {
             title: '',
             text: 'KEITH;;;' + b64data,
-            footer: `> *Made on Earth by man 🗿*`,
+          //  footer: `> *Made on Earth by man 🗿*`,
             buttons: [
                 { 
                     name: 'cta_copy', 
